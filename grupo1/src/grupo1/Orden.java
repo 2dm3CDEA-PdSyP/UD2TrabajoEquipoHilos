@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Los semáforos se usan a menudo para:
+ * restringir el número de hilos que pueden acceder a algunos recursos.
  */
 package grupo1;
 
@@ -9,12 +8,21 @@ import java.util.concurrent.Semaphore;
 
 /**
  *
- * @author lmll
+ * @author grupo1 (Gorriti, Esteibar, Lozada)
  */
 public class Orden {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
+        
+        // Un semáforo de conteo.
+        // Conceptualmente, mantiene un conjunto de permisos.
+        // 
         Semaphore semaphore = new Semaphore(0);
+        
         Saludo t1 = new Saludo(1, semaphore);
         Saludo t2 = new Saludo(2, semaphore);
         Saludo t3 = new Saludo(3, semaphore);
@@ -28,7 +36,7 @@ public class Orden {
             t3.join();
         } catch (InterruptedException e) {
             System.out.println(
-                    "Hilo principaldel proceso interrumpido.");
+                    "Hilo principal del proceso interrumpido.");
         }
         System.out.println(
                 "Proceso acabando.");

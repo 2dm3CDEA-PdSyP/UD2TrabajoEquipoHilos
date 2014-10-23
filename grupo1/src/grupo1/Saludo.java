@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package grupo1;
 
 import java.util.concurrent.Semaphore;
 
 /**
  *
- * @author grupo1
+ * @author grupo1 (Gorriti, Esteibar, Lozada)
  */
 class Saludo extends Thread {
 
@@ -22,20 +17,31 @@ class Saludo extends Thread {
     }
 
     public void run() {
+        
         if (id == 1 || id == 3) {
             try {
+           
+                // Cada adquire() se bloquea,
+                //hasta que un permiso esté disponible.                
                 sem.acquire();
+            
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally{
-               // sem.release();
+                
+               //Cada release() añade un permiso,
+               //lo que podría liberar un adquire() bloqueado. 
+                 
+              // sem.release();
             }
             
         }
         System.out.println("Hola, soy el thread" + id);
         if (id == 2) {
+             //Cada release() añade un permiso,
+             // lo que podría liberar un adquire() bloqueo. 
             sem.release();
-            //sem.release();
+            sem.release();
         }
     }
 }
