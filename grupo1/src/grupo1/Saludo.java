@@ -22,36 +22,20 @@ class Saludo extends Thread {
     }
 
     public void run() {
-        if (id == 1) {
+        if (id == 1 || id == 3) {
             try {
                 sem.acquire();
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } finally{
+               // sem.release();
             }
+            
         }
         System.out.println("Hola, soy el thread" + id);
         if (id == 2) {
             sem.release();
+            //sem.release();
         }
-    }
-}
-
-class Orden {
-
-    public static void main(String[] args) {
-        Semaphore semaphore = new Semaphore(0);
-        Saludo t1 = new Saludo(1, semaphore);
-        Saludo t2 = new Saludo(2, semaphore);
-        t1.start();
-        t2.start();
-        try {
-            t1.join();
-            t2.join();
-        } catch (InterruptedException e) {
-            System.out.println(
-                    "Hilo principaldel proceso interrumpido.");
-        }
-        System.out.println(
-                "Proceso acabando.");
     }
 }
