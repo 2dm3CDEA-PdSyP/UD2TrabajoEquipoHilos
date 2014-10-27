@@ -1,6 +1,9 @@
 /*
  * Los semáforos se usan a menudo para:
  * restringir el número de hilos que pueden acceder a algunos recursos.
+TODO 
+Mostrar la API y sus metodos
+
  */
 package grupo1;
 
